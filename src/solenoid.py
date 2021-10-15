@@ -1,28 +1,25 @@
-from abc import ABC
-from enum import IntEnum
-
-
-class SolenoidState(IntEnum):
-    OPEN = 1
-    CLOSED = 0
+from abc import ABC, abstractmethod
 
 
 class Solenoid(ABC):
     pin: int
 
+    @abstractmethod
     def open(self):
         """
         opens solenoid
         :return: None
         """
 
+    @abstractmethod
     def close(self):
         """
         closes solenoid
         :return: None
         """
 
-    def get_state(self) -> SolenoidState:
+    @abstractmethod
+    def is_open(self) -> bool:
         """
         gets current state of this solenoid
         :return: SolenoidState

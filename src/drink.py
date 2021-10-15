@@ -3,7 +3,7 @@ from typing import List, Optional
 
 from recipe import Recipe
 from pour import Pour
-from main import make_pour
+from main import pour_factory
 
 
 class Drink:
@@ -28,7 +28,7 @@ class Drink:
         """
         self.pours = list()
         for ingredient in self.recipe:
-            self.pours.append(make_pour(ingredient, self.recipe[ingredient]))
+            self.pours.append(pour_factory.make_pour(ingredient, self.recipe[ingredient]))
 
 
     def get_pours(self) -> List[Pour]:
