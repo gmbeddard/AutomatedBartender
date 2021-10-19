@@ -1,17 +1,21 @@
-from typing import Dict
+from typing import Dict, Type
 from uuid import UUID
 
-from solenoid import Solenoid
-from sensor import Sensor
-from pour_manager import Timed_Pour_Factory, add_pour
+# from sensor import get_amount_sensor
+# from solenoid import add_solenoid, get_solenoid
+from src.pour import Pour_Factory, add_pour
 from src.drink import Drink
+from src.recipe import Recipe_Factory, JSON_Recipe_Factory
 
-ingredient_solenoids: Dict[str, Solenoid] = dict()
-ingredient_amount_sensors: Dict[str, Sensor] = dict()
-#TODO fill in these solenoids somewhere
+# implementation specific imports
+from src.pseudo_implementations.timed_pour import Timed_Pour_Factory
 
-pour_factory = Timed_Pour_Factory  # Indicates which type of pour factory is being used
-# TODO make a better type of pour + factory that actually uses the sensors and replace this with it
+
+# Factory declarations for specific implementation
+pour_factory: Type[Pour_Factory] = Timed_Pour_Factory
+recipe_parser: Type[Recipe_Factory] = JSON_Recipe_Factory
+# TODO make real ones
+
 
 finished_drinks: Dict[UUID, Drink] = dict()
 

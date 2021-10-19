@@ -1,6 +1,13 @@
-from abc import ABC, abstractmethod
+"""
+Contains Pour base class, Pour Factory base class, and
+functions and data structures to manage active pours.
+"""
 
-from solenoid import Solenoid
+from abc import ABC, abstractmethod
+from typing import List
+
+from src.solenoid import Solenoid
+
 
 class Pour(ABC):
     solenoid: Solenoid
@@ -43,4 +50,40 @@ class Pour(ABC):
         """
         Needs to be called repeatedly and frequently. Checks this pour progress and stops it if it is done.
         :return: None
+        """
+
+
+pours_occurring: List[Pour] = list()
+
+
+def add_pour(pour: Pour):
+    """
+    Adds pour to the list
+    :param pour: obj to add to queue
+    :return: None
+    """
+    pours_occurring.append(pour)
+    pour.start_pour()
+
+
+def update_pours():
+    """
+    Updates all pours that are active. removes finished pours
+    :return: None
+    """
+    for pour in pours_occurring:
+        pour.update()
+        if pour.get_progress() >= 1.0:
+            pours_occurring.remove(pour)
+
+
+class Pour_Factory(ABC):
+    @staticmethod
+    @abstractmethod
+    def make_pour(ingredient: str, amount: float) -> Pour:
+        """
+        Creates a Pour object of the subclass we're using
+        :param ingredient: which ingredient
+        :param amount:
+        :return: a Pour
         """

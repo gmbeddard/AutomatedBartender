@@ -1,6 +1,6 @@
 from time import perf_counter  # timer fn
 
-from pour import Pour
+from src.pour import Pour, Pour_Factory, add_pour
 
 POUR_RATE = 0.8
 
@@ -27,3 +27,17 @@ class Timed_Pour(Pour):
         self.current_amount = (perf_counter() - self.start_tm) * POUR_RATE
         if self.current_amount >= self.recipe_amount:
             self.stop_pour()
+
+
+
+class Timed_Pour_Factory(Pour_Factory):
+    """
+    Implementation of above ABC. this one makes timed pours which are kind of useless for the real project
+    """
+    @staticmethod
+    def make_pour(ingredient, amount):
+        pour = Timed_Pour()
+        pour.solenoid = ingredient_solenoids[ingredient]
+        pour.recipe_amount = amount
+        add_pour(pour)
+        return pour

@@ -1,9 +1,9 @@
 from uuid import UUID, uuid4
 from typing import List, Optional
 
-from recipe import Recipe
-from pour import Pour
-from main import pour_factory
+from src.recipe import Recipe
+from src.pour import Pour
+# from src.main import pour_factory
 
 
 class Drink:
@@ -41,7 +41,7 @@ class Drink:
         return self.pours
 
 
-    def get_status(self) -> float:
+    def get_progress(self) -> float:
         """
         Get's this drink's current progress: sum amount poured / total to pour
         :return: float btwn 0 and 1

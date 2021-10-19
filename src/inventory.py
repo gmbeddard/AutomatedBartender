@@ -1,6 +1,6 @@
 from typing import List
 
-from main import ingredient_amount_sensors
+from sensor import get_amount_sensor
 
 installed_ingredients: List[str] = list()  # Keeps track of which ingredients are 'installed'
 MIN_AMOUNT: float = 2  # the minimum amount of an ingredient needed to say it is available
@@ -20,4 +20,4 @@ def get_amount(ingredient: str) -> float:
     :param ingredient: the ingredient
     :return: float, sensor value
     """
-    return ingredient_amount_sensors[ingredient].get_value()
+    return get_amount_sensor(ingredient).get_value()
