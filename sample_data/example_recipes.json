@@ -1,0 +1,18 @@
+[
+  {
+    "recipe_name": "Bennett's Beach Punch",
+    "ingredients": [
+      {
+        "index": 1,
+        "id": "VODKA",
+        "display_name": "Vodka",
+        "qty": 750
+      }, {
+        "index": 0,
+        "id": "FRUIT_PUNCH",
+        "display_name": "Fruit Punch",
+        "qty": 2750
+      }
+    ]
+  }
+]

@@ -27,6 +27,26 @@ class Solenoid(ABC):
         """
 
 
+class Console_Solenoid(Solenoid):
+    _open: bool
+    _name: str
+
+    def __init__(self, name: str):
+        self._open = False
+        self._name = name
+
+    def open(self):
+        self._open = True
+        print('solenoid {}: opened'.format(self._name))
+
+    def close(self):
+        self._open = False
+        print('solenoid {}: closed'.format(self._name))
+
+    def is_open(self) -> bool:
+        return self._open
+
+
 _ingredient_solenoids: Dict[str, Solenoid] = dict()
 
 def get_solenoid(ingredient: str) -> Optional[Solenoid]:

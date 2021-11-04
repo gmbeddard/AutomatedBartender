@@ -1,6 +1,7 @@
-from typing import List, Tuple
+from typing import List, Tuple, Type
 from abc import ABC, abstractmethod
 import json
+
 
 class Recipe:
     name: str
@@ -90,3 +91,5 @@ class JSON_Recipe_Factory(Recipe_Factory):
         return recipe_obj
 
 
+# set which recipe parser we are going to use
+recipe_parser: Type[Recipe_Factory] = JSON_Recipe_Factory
